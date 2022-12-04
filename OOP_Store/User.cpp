@@ -7,13 +7,13 @@ User::User()
 	this->phone_number = "";
 	this->address = "";
 }
-User::User(string e, string n, string p, string ph, string add, int store_id)
+User::User(string user_id, string name, string password, string phone_number, string address)
 {
-	this->user_id = e;
-	this->name = n;
-	this->password = p;
-	this->phone_number = ph;
-	this->address = add;
+	this->user_id = user_id;
+	this->name = name;
+	this->password = password;
+	this->phone_number = phone_number;
+	this->address = address;
 }
 //setter///
 void User::setuser_id(string e) {

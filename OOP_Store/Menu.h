@@ -1,13 +1,13 @@
 #pragma once
 #include <string>
-#include "Cart.h"
+class Cart;
+
 using namespace std;
 
 class Menu
 {
 private:
 	std::string menu_explanation;
-	int menu_price;
 	int menu_count;
 	int option_count;
 	std::string option_list[10];
@@ -24,6 +24,7 @@ public:
 	void print_info();
 	int store_id;
 	std::string menu_name;
+	int menu_price;
 };
 
 

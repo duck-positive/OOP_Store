@@ -6,15 +6,15 @@ using namespace std;
 class User
 {
 protected:
-	string user_id;
+	
 	string name;
 	string password;
 	string phone_number;
-	string address;
+	
 
 public:
 	User();
-	User(string e, string n, string p, string ph, string add,int store_id);
+	User(string e, string n, string p, string ph, string add);
 	///setter///
 	void setuser_id(string e);
 	void setname(string n);
@@ -31,6 +31,9 @@ public:
 	string getaddress()const;
 	
 	~User();
+
+	string user_id;
+	string address;
 };
 
 

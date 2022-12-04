@@ -5,7 +5,7 @@
 using namespace std;
 
 Payment::Payment() {
-	this->user_id = "";
+	this->user = User();
 	this->payment_num = 0;
 	this->total_price = 0;
 	this->min_price = 0;
@@ -15,12 +15,19 @@ Payment::Payment() {
 	this->pay_password = 0;
 }
 
-Payment::Payment(User user_id, int payment_num,
+Payment::Payment(User user, int payment_num,
 	int total_price, int min_price, int card_number, int card_passwoed
-	, int pay_number, int pay_password) : user_id(user_id), payment_num(payment_num)
-	, total_price(total_price), min_price(min_price), card_number(card_number),
-	card_password(card_password), pay_number(pay_number), pay_password(pay_password)
-{}
+	, int pay_number, int pay_password)
+{
+	this->user = user;
+	this->payment_num = payment_num;
+	this->total_price = total_price;
+	this->min_price = min_price;
+	this->card_number = card_number;
+	this->card_password = card_password;
+	this->pay_number = pay_number;
+	this->pay_password = pay_password;
+}
 
 
 
@@ -28,6 +35,8 @@ int Payment::get_cart_price(int get_total_price,int min_price)
 {
 	this->total_price = get_total_price;
 	this->min_price = min_price;
+
+	return get_total_price;
 }
 
 string Payment::payment() {
@@ -42,7 +51,7 @@ A:
 	if (this->min_price > this->total_price)
 	{
 		std::cout << "주문 최소 금액을 넘지 못해 배달이 불가합니다." << endl;
-		goto A;
+		return "0";
 	}
 	std::cout << "\t\t\t\t ****************결제 방법을 선택해 주세요.****************" << endl;
 	std::cout << "\t\t\t\t 사회적 거리두기 강화를 위해 대면 결제는 제공되지 않습니다." << endl;
@@ -113,7 +122,7 @@ A:
 		std::cout << "유효하지 않은 입력값입니다." << endl;
 
 	}
-	return this->user_id.address;
+	return this->user.address;
 
 
 }

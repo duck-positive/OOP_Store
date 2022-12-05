@@ -8,7 +8,6 @@ class Store {
 protected:
 	int store_id;
 	string store_address;
-	string store_name;
 	string store_phno;
 	string user_address;
 	int min_price;
@@ -24,5 +23,6 @@ public:
 	bool confirm_deliver();
 	~Store();
 	Menu menu_list[10];
+	string store_name;
 	
 };

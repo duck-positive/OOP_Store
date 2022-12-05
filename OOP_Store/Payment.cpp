@@ -5,7 +5,7 @@
 using namespace std;
 
 Payment::Payment() {
-	this->user = User();
+	this->user = new User();
 	this->payment_num = 0;
 	this->total_price = 0;
 	this->min_price = 0;
@@ -15,8 +15,8 @@ Payment::Payment() {
 	this->pay_password = 0;
 }
 
-Payment::Payment(User user, int payment_num,
-	int total_price, int min_price, int card_number, int card_passwoed
+Payment::Payment(User* user, int payment_num,
+	int total_price, int min_price, int card_number, int card_password
 	, int pay_number, int pay_password)
 {
 	this->user = user;
@@ -39,7 +39,12 @@ int Payment::get_cart_price(int get_total_price,int min_price)
 	return get_total_price;
 }
 
-string Payment::payment() {
+string Payment::payment(Cart* cart) {
+	cart->sum_price();
+	this->total_price = cart->total_price;
+	cart->show_cart();
+	int total_price = 0;
+	
 	int input_card_number;
 	int input_card_password;
 	int input_pay_number;
@@ -122,7 +127,7 @@ A:
 		std::cout << "유효하지 않은 입력값입니다." << endl;
 
 	}
-	return this->user.address;
+	return this->user->address;
 
 
 }

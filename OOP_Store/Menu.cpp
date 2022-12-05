@@ -7,6 +7,10 @@ using namespace std;
 
 Menu::Menu() {
 	this->store_id = 0;
+	this->menu_name = "선택된 메뉴 없음";
+	this->menu_explanation = "";
+	this->menu_price = 0;
+	this->menu_count = 0;
 }
 
 Menu::Menu(int stroe_id, std::string menu_name, std::string menu_explanation, int menu_price, int option_count, std::string option_list[], bool option_check[], int option_price[]){
@@ -35,14 +39,17 @@ void Menu::add_option(string option_list[], int option_price[]) {
 void Menu::print_info() {
 	cout << this->menu_name << endl;
 	for (int i = 0; i < this->option_count; i++) {
-		cout << "option name : " << this->option_list[i] << "  || option price : " << this->option_price[i] << endl;
+		cout<< i+1 << "option name : " << this->option_list[i] << "  || option price : " << this->option_price[i] << endl;
 	}
+
+	cout << "추가할 옵션 번호를 입력해주세요(카트 담기 0, 취소 8) : ";
 }
 
 void Menu::add_cart(Cart* cart) {
 	for (int cart_list_index = 0; cart_list_index < 10; cart_list_index++) {
 		if (cart->cart_menu_list[cart_list_index].store_id == 0) {
 			cart->cart_menu_list[cart_list_index] = *this;
+			break;
 		}
 	}
 	

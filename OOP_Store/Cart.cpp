@@ -9,13 +9,15 @@ Cart::Cart() {
 	}
 }
 void Cart::show_cart(){
+	cout << "장바구니 목록 출력" << endl;
 	for (int i = 0; i < 10; i++) {
-		if (this->cart_menu_list[i].store_id != 0) {
-			cout << this->cart_menu_list[i].menu_name << endl;
-		}
+		cout << this->cart_menu_list[i].menu_name << endl;
 	}
 }
-void sum_price() {
+void Cart::sum_price() {
 	int total_price = 0;
-	
+	for (int i = 0; i < 10; i++) {
+		total_price += this->cart_menu_list[i].menu_price;
+	}
+	this->total_price = total_price;
 }

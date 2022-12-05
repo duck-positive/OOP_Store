@@ -31,14 +31,19 @@ void Store::initialize_menu_list(Menu menu_list[]) {
 	}
 }
 
-void Store::print_menu() {
-	cout << this->store_name << endl;
+void Store::print_store_info() {
+	system("cls");
+	cout << endl << "가게명 : " << this->store_name << endl << endl;
+	cout << "최소 주문 금액 : " << this->min_price << endl;
 	for (int i = 0; i < 5; i++) {
-		cout << i+1 << ". " << this->menu_list[i].menu_name << "  ||  " << this->menu_list[i].menu_price << endl;
+		if (this->menu_list[i].menu_price == 0) {
+			break;
+		}
+		cout << i + 1 << ".";
+		this->menu_list[i].print_menu();
+		
 	}
 
-	int input = 0;
-	
 	cout << "추가할 메뉴 번호를 선택해주세요(상점 선택 화면 0) : ";
 }
 

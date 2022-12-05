@@ -27,33 +27,60 @@ Payment::Payment(User* user, int payment_num, int card_number, int card_password
 	this->pay_password = pay_password;
 }
 
-
-
-int Payment::get_cart_price(int get_total_price,int min_price)
-{
-	this->total_price = get_total_price;
-	this->min_price = min_price;
-
-	return get_total_price;
-}
-
-int Payment::payment(Cart* cart) {
+int Payment::payment(Cart* cart, Store* store_list[]) {
 	cart->sum_price();
-	this->total_price = cart->total_price;
-	cart->show_cart();
-	int total_price = 0;
+	int select_action = 0;
+	int cart_total_price = cart->total_price;
 	
+	if (cart_total_price == 0) {
+		while (true) {
+			cout << "장바구니가 비어있습니다" << endl;
+			cout << "1. 더 고르기" << endl;
+			cin >> select_action;
+			if (select_action == 1) {
+				return 1;
+			}
+			else {// 예외처리 추가 필요
+				cout << "입력이 잘못되었습니다." << endl;
+			}
+		}
+	}
+	else {
+		int store_id_in_cart = cart->get_menu_store_id();
+		for (int search_matching_store_index = 0; search_matching_store_index < 10; search_matching_store_index++) {
+			if (store_list[search_matching_store_index]->store_id == store_id_in_cart) {
+				store_list[search_matching_store_index]->min_price = this->min_price;
+				this->total_price = store_list[search_matching_store_index]->tip;
+				break;
+			}
+		}
+	}
+	this->total_price += cart->total_price;
 	int input_card_number;
 	int input_card_password;
 	int input_pay_number;
 	int input_pay_password;
-	int option = 0;
-	int select_action = 0;
-	cout << "1. 결제하기" << endl;
-	cout << "2. 더 고르기" << endl;
-	cin >> select_action;
-	if (select_action == 2) {
-		return 1;
+	while (true) {
+		cart->show_cart();
+		this->total_price = cart->total_price;
+		cout << "총 주문 금액 : " << this->total_price << endl;
+
+		
+
+		int select_item = 0;
+		cout << "1. 더 고르기" << endl;
+		cout << "2. 장바구니에 담은 메뉴 삭제" << endl;
+		cout << "3. 결제하기" << endl;
+		cin >> select_action;
+		if (select_action == 1) {
+			return 1;
+		}
+		else if (select_action == 2) {
+			cart->show_cart();
+			cout << "삭제할 메뉴의 번호를 입력해주세요(취소 0) : ";
+			cin >> select_item;
+			cart->delete_select_menu(select_item);
+		}
 	}
 A:
 
@@ -67,9 +94,9 @@ A:
 	std::cout << "\t\t\t\t**********************************************************" << endl;
 	std::cout << "\t\t\t\t             Press 1 For Credit Card:    " << endl;
 	std::cout << "\t\t\t\t             Press 2 For On-Line Payment:" << endl;
-	std::cin >> option;
+	std::cin >> select_action;
 	system("cls");
-	switch (option)
+	switch (select_action)
 	{
 	case 1:
 	B:

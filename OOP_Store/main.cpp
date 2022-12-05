@@ -26,7 +26,7 @@ void print_store_list(Store* store_list[], int list_size, Cart* cart) {
 		}
 		//메뉴 계속 선택하기 선택 시 반복
 		while (true) {
-			store_list[input - 1]->print_menu();
+			store_list[input - 1]->print_store_info();
 			int select = 0;
 			int option_select = 0;
 			cin >> select;
@@ -36,14 +36,17 @@ void print_store_list(Store* store_list[], int list_size, Cart* cart) {
 			}
 			else {
 				if (input != 0) {
-					store_list[input-1]->menu_list[select-1].print_info();
+					store_list[input-1]->menu_list[select-1].print_menu_option();
 					cin >> option_select;
 				}
+			}
+			if (option_select == 8) {
+				break;
 			}
 			store_list[input]->menu_list[select-1].option_check[option_select-1] = true;
 			store_list[input]->menu_list[select-1].add_cart(cart);
 
-			cout << "success  메뉴를 계속 선택하시겠습니까?(상점 선택 화면 0 else 1)" << endl;
+			cout << "메뉴를 계속 선택하시겠습니까?(상점 선택 화면: 0, 메뉴 선택 화면: 1)" << endl;
 			cin >> select;
 			if (select == 0) break;
 		}
@@ -67,22 +70,28 @@ int main() {
 		Menu(1, "레드콤보", "light", 20000, 3, option, option_cnt, option_price), 
 		Menu(1, "허니오리지날", "light", 16000, 3, option, option_cnt, option_price), 
 		Menu(1, "레드오리지날", "light", 17000, 3, option, option_cnt, option_price) };
+	Menu kyochon_menu_list2[5] = {
+		Menu(2, "허니콤보", "light", 20000, 3, option, option_cnt, option_price),
+		Menu(2, "레드콤보", "light", 20000, 3, option, option_cnt, option_price),
+		Menu(2, "허니오리지날", "light", 16000, 3, option, option_cnt, option_price),
+		Menu(2, "레드오리지날", "light", 17000, 3, option, option_cnt, option_price) };
+
 	Store* store = new Store(1, "서울시", "교촌치킨 상도터널점", "0100000", kyochon_menu_list, "user_address", 16000, 4000);
 
-	Store* store2 = new Store(1, "서울시", "교촌치킨2", "0100000", kyochon_menu_list, "서울시", 1000, 3000);
-	Store* store3 = new Store(1, "서울시", "교촌치킨3", "0100000", kyochon_menu_list, "서울시", 1000, 3000);
-	Store* store4 = new Store(1, "서울시", "교촌치킨4", "0100000", kyochon_menu_list, "서울시", 1000, 3000);
-	Store* store5 = new Store(1, "서울시", "교촌치킨5", "0100000", kyochon_menu_list, "서울시", 1000, 3000);
-	Store* store6 = new Store(1, "서울시", "교촌치킨6", "0100000", kyochon_menu_list, "서울시", 1000, 3000);
-	Store* store7 = new Store(1, "서울시", "교촌치킨7", "0100000", kyochon_menu_list, "서울시", 1000, 3000);
-	Store* store8 = new Store(1, "서울시", "교촌치킨8", "0100000", kyochon_menu_list, "서울시", 1000, 3000);
-	Store* store9 = new Store(1, "서울시", "교촌치킨9", "0100000", kyochon_menu_list, "서울시", 1000, 3000);
-	Store* store10 = new Store(1, "서울시", "교촌치킨10", "0100000", kyochon_menu_list, "서울시", 1000, 3000);
+	Store* store2 = new Store(2, "서울시", "교촌치킨2", "0100000", kyochon_menu_list2, "서울시", 1000, 3000);
+	Store* store3 = new Store(2, "서울시", "교촌치킨3", "0100000", kyochon_menu_list, "서울시", 1000, 3000);
+	Store* store4 = new Store(3, "서울시", "교촌치킨4", "0100000", kyochon_menu_list, "서울시", 1000, 3000);
+	Store* store5 = new Store(4, "서울시", "교촌치킨5", "0100000", kyochon_menu_list, "서울시", 1000, 3000);
+	Store* store6 = new Store(5, "서울시", "교촌치킨6", "0100000", kyochon_menu_list, "서울시", 1000, 3000);
+	Store* store7 = new Store(6, "서울시", "교촌치킨7", "0100000", kyochon_menu_list, "서울시", 1000, 3000);
+	Store* store8 = new Store(7, "서울시", "교촌치킨8", "0100000", kyochon_menu_list, "서울시", 1000, 3000);
+	Store* store9 = new Store(8, "서울시", "교촌치킨9", "0100000", kyochon_menu_list, "서울시", 1000, 3000);
+	Store* store10 = new Store(9, "서울시", "교촌치킨10", "0100000", kyochon_menu_list, "서울시", 1000, 3000);
 
 	Store* store_list[10] = { store, store2, store3, store4, store5, store6, store7, store8, store9, store10};
 	while (true) {
 		print_store_list(store_list, 10, cart);
-		int result = payment->payment(cart);
+		int result = payment->payment(cart, store_list);
 		if (result == 0) break;
 	}
 

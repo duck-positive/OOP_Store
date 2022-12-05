@@ -10,9 +10,7 @@ private:
 	std::string menu_explanation;
 	int menu_count;
 	int option_count;
-	std::string option_list[10];
-	bool option_check[10];
-	int option_price[10];
+	
 
 public:
 	
@@ -25,6 +23,9 @@ public:
 	int store_id;
 	std::string menu_name;
 	int menu_price;
+	std::string option_list[10];
+	bool option_check[10];
+	int option_price[10];
 };
 
 

@@ -15,14 +15,12 @@ Payment::Payment() {
 	this->pay_password = 0;
 }
 
-Payment::Payment(User* user, int payment_num,
-	int total_price, int min_price, int card_number, int card_password
-	, int pay_number, int pay_password)
+Payment::Payment(User* user, int payment_num, int card_number, int card_password, int pay_number, int pay_password)
 {
 	this->user = user;
 	this->payment_num = payment_num;
-	this->total_price = total_price;
-	this->min_price = min_price;
+	this->total_price = 0;
+	this->min_price = 0;
 	this->card_number = card_number;
 	this->card_password = card_password;
 	this->pay_number = pay_number;
@@ -39,7 +37,7 @@ int Payment::get_cart_price(int get_total_price,int min_price)
 	return get_total_price;
 }
 
-string Payment::payment(Cart* cart) {
+int Payment::payment(Cart* cart) {
 	cart->sum_price();
 	this->total_price = cart->total_price;
 	cart->show_cart();
@@ -50,13 +48,19 @@ string Payment::payment(Cart* cart) {
 	int input_pay_number;
 	int input_pay_password;
 	int option = 0;
-	
+	int select_action = 0;
+	cout << "1. 결제하기" << endl;
+	cout << "2. 더 고르기" << endl;
+	cin >> select_action;
+	if (select_action == 2) {
+		return 1;
+	}
 A:
 
 	if (this->min_price > this->total_price)
 	{
 		std::cout << "주문 최소 금액을 넘지 못해 배달이 불가합니다." << endl;
-		return "0";
+		return 1;
 	}
 	std::cout << "\t\t\t\t ****************결제 방법을 선택해 주세요.****************" << endl;
 	std::cout << "\t\t\t\t 사회적 거리두기 강화를 위해 대면 결제는 제공되지 않습니다." << endl;
@@ -127,7 +131,7 @@ A:
 		std::cout << "유효하지 않은 입력값입니다." << endl;
 
 	}
-	return this->user->address;
+	return 0;
 
 
 }

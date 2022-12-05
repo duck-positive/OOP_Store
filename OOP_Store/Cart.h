@@ -5,7 +5,7 @@ using namespace std;
 class Cart {
 public : 
 	Cart();
-	
+	//user 와 연관관계 추가 ex.user_id
 	void show_cart();
 	//void delete_select_menu();
 	//void delete_all();

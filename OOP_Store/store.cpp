@@ -32,15 +32,14 @@ void Store::initialize_menu_list(Menu menu_list[]) {
 }
 
 void Store::print_menu() {
+	cout << this->store_name << endl;
 	for (int i = 0; i < 5; i++) {
-		cout << i << ". " << this->menu_list[i].menu_name << "  ||  " << this->menu_list[i].menu_price << endl;
+		cout << i+1 << ". " << this->menu_list[i].menu_name << "  ||  " << this->menu_list[i].menu_price << endl;
 	}
 
 	int input = 0;
 	
-	cout << "추가할 메뉴 번호를 선택해주세요 : ";
-	cin >> input;
-	this->menu_list[0].print_info();
+	cout << "추가할 메뉴 번호를 선택해주세요(상점 선택 화면 0) : ";
 }
 
 bool Store::confirm_order(string store_address, string store_name, string store_phno, string user_address) {

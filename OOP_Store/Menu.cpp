@@ -25,6 +25,9 @@ Menu::Menu(int stroe_id, std::string menu_name, std::string menu_explanation, in
 	//need copy process
 	this->option_count = option_count;
 	add_option(option_list, option_price);
+	for (int i = 0; i < 10; i++) {
+		this->option_check[i] = false;
+	}
 }
 
 void Menu::add_option(string option_list[], int option_price[]) {

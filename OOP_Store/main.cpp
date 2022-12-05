@@ -24,11 +24,13 @@ void print_store_list(Store* store_list[], int list_size, Cart* cart) {
 			system("cls");
 			break;
 		}
+		int select = 0;
+		int option_select = 0;
+		int menu_count = 0;
 		//메뉴 계속 선택하기 선택 시 반복
 		while (true) {
 			store_list[input - 1]->print_store_info();
-			int select = 0;
-			int option_select = 0;
+			
 			cin >> select;
 			//상점 목록으로 돌아가기
 			if (select == 0) {
@@ -43,8 +45,14 @@ void print_store_list(Store* store_list[], int list_size, Cart* cart) {
 			if (option_select == 8) {
 				break;
 			}
-			store_list[input]->menu_list[select-1].option_check[option_select-1] = true;
-			store_list[input]->menu_list[select-1].add_cart(cart);
+			else {
+				store_list[input-1]->menu_list[select - 1].option_check[option_select - 1] = true;
+			}
+			cout << "메뉴 수량 선택" << endl;
+			cin >> menu_count;
+			store_list[input - 1]->menu_list[select - 1].set_menu_count(menu_count);
+			
+			store_list[input-1]->menu_list[select-1].add_cart(cart);
 
 			cout << "메뉴를 계속 선택하시겠습니까?(상점 선택 화면: 0, 메뉴 선택 화면: 1)" << endl;
 			cin >> select;
@@ -58,7 +66,7 @@ int main() {
 	User* user = new User("user_id", "user_name", "1234", "01012345678", "서울시");
 	Payment* payment = new Payment(user, 10, 1234, 2345, 12, 34);
 	
-	Cart* cart = new Cart();
+	Cart* cart = new Cart(user->user_id);
 	std::string option[10] = { "치즈볼 3개 추가", "떡볶이 추가", "샐러드 추가", "", "" , "" , "" , "" , "" , "" };
 	std::string option2[10] = { "치즈볼 3개 추가", "떡볶이 추가", "샐러드", "dd", "dd", "dd", "dd", "dd", "dd", "dd" };
 	std::string option3[10] = { "치즈볼 3개 추가", "떡볶이 추가", "샐러드", "dd", "dd", "dd", "dd", "dd", "dd", "dd" };

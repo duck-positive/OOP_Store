@@ -9,7 +9,7 @@ public:
 	
 	Payment();
 	Payment(User* user, int payment_num, int card_number, int card_passwoed, int pay_number, int pay_password); 
-	User get_user(User* user);
+	
 	int payment(Cart* cart, Store* store_list[]);
 
 	~Payment();

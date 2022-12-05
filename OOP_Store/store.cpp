@@ -36,7 +36,7 @@ void Store::print_store_info() {
 	cout << endl << "가게명 : " << this->store_name << endl << endl;
 	cout << "최소 주문 금액 : " << this->min_price << endl;
 	for (int i = 0; i < 5; i++) {
-		if (this->menu_list[i].menu_price == 0) {
+		if (this->menu_list[i].get_menu_price() == 0) {
 			break;
 		}
 		cout << i + 1 << ".";

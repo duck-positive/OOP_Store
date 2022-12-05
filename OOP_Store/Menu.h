@@ -10,7 +10,9 @@ private:
 	int store_id;
 	int menu_count;
 	int option_count;
-
+	std::string menu_name;
+	std::string menu_explanation;
+	int menu_price;
 public:
 	Menu();
 	Menu(int, std::string, std::string, int, int, std::string[], bool[], int[]);
@@ -20,10 +22,12 @@ public:
 	void print_menu();
 	void print_menu_option();
 	int get_store_id();
+	string get_menu_name();
+	string get_menu_explanation();
+	int get_menu_price();
+	int get_menu_count();
+	void set_menu_count(int);
 	
-	std::string menu_name;
-	std::string menu_explanation;
-	int menu_price;
 	std::string option_list[10];
 	bool option_check[10];
 	int option_price[10];

@@ -57,6 +57,25 @@ void Menu::print_menu_option() {
 int Menu::get_store_id() {
 	return this->store_id;
 }
+string Menu::get_menu_name() {
+	return this->menu_name;
+}
+
+string Menu::get_menu_explanation() {
+	return this->menu_explanation;
+}
+
+int Menu::get_menu_price() {
+	return this->menu_price;
+}
+
+int Menu::get_menu_count() {
+	return this->menu_count;
+}
+
+void Menu::set_menu_count(int menu_count) {
+	this->menu_count = menu_count;
+}
 
 void Menu::add_cart(Cart* cart) {
 	

@@ -7,7 +7,12 @@ Cart::Cart() {
 	for (int cart_menu_index = 0; cart_menu_index < 10; cart_menu_index++) {
 		this->cart_menu_list[cart_menu_index] = Menu();
 	}
+	this->cart_user_id = "";
 	this->total_price = 0;
+}
+
+Cart::Cart(string user_id) : Cart() {
+	this->cart_user_id = user_id;
 }
 
 void Cart::show_cart(){
@@ -15,9 +20,9 @@ void Cart::show_cart(){
 	cout << "장바구니 목록 출력" << endl;
 	
 	for (int cart_menu_list_index = 0; cart_menu_list_index < 10; cart_menu_list_index++) {
-		if (this->cart_menu_list[cart_menu_list_index].menu_name == "")
+		if (this->cart_menu_list[cart_menu_list_index].get_menu_name() == "")
 			break;
-		cout << this->cart_menu_list[cart_menu_list_index].menu_name << endl;
+		cout<< cart_menu_list_index+1 << ". " << this->cart_menu_list[cart_menu_list_index].get_menu_name() << endl;
 	}
 }
 
@@ -34,8 +39,9 @@ int Cart::get_menu_store_id() {
 void Cart::sum_price() {
 	int total_price = 0;
 	for (int cart_menu_list_index = 0; cart_menu_list_index < 10; cart_menu_list_index++) {
-		if (this->cart_menu_list[cart_menu_list_index].menu_price != 0) {
-			total_price += this->cart_menu_list[cart_menu_list_index].menu_price;
+		if (this->cart_menu_list[cart_menu_list_index].get_menu_price() != 0) {
+			Menu menu = this->cart_menu_list[cart_menu_list_index];
+			total_price += menu.get_menu_price()*menu.get_menu_count();
 			for (int j = 0; j < 10; j++) {
 				if (this->cart_menu_list[cart_menu_list_index].option_check[j] == true) {
 					total_price += this->cart_menu_list[cart_menu_list_index].option_price[j];
@@ -46,8 +52,9 @@ void Cart::sum_price() {
 	}
 	this->total_price = total_price;
 }
+
 void Cart::delete_select_menu(int select_item_index) {
-	if (this->cart_menu_list[select_item_index-1].menu_price == 0) {
+	if (this->cart_menu_list[select_item_index-1].get_menu_price() == 0) {
 		cout << "잘못된 번호입니다" << endl;
 	}
 	else {

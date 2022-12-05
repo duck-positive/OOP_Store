@@ -28,44 +28,45 @@ Payment::Payment(User* user, int payment_num, int card_number, int card_password
 }
 
 int Payment::payment(Cart* cart, Store* store_list[]) {
-	cart->sum_price();
-	int select_action = 0;
-	int cart_total_price = cart->total_price;
-	
-	if (cart_total_price == 0) {
-		while (true) {
-			cout << "장바구니가 비어있습니다" << endl;
-			cout << "1. 더 고르기" << endl;
-			cin >> select_action;
-			if (select_action == 1) {
-				return 1;
-			}
-			else {// 예외처리 추가 필요
-				cout << "입력이 잘못되었습니다." << endl;
-			}
-		}
-	}
-	else {
-		int store_id_in_cart = cart->get_menu_store_id();
-		for (int search_matching_store_index = 0; search_matching_store_index < 10; search_matching_store_index++) {
-			if (store_list[search_matching_store_index]->store_id == store_id_in_cart) {
-				store_list[search_matching_store_index]->min_price = this->min_price;
-				this->total_price = store_list[search_matching_store_index]->tip;
-				break;
-			}
-		}
-	}
-	this->total_price += cart->total_price;
 	int input_card_number;
 	int input_card_password;
 	int input_pay_number;
 	int input_pay_password;
+	int select_action = 0;
 	while (true) {
+		cart->sum_price();
+		int cart_total_price = cart->total_price;
+
+		if (cart_total_price == 0) {
+			while (true) {
+				system("cls");
+				cout << "장바구니가 비어있습니다" << endl;
+				cout << "1. 더 고르기" << endl;
+				cin >> select_action;
+				if (select_action == 1) {
+					return 1;
+				}
+				else {// 예외처리 추가 필요
+					cout << "입력이 잘못되었습니다." << endl;
+				}
+			}
+		}
+		else {
+			int store_id_in_cart = cart->get_menu_store_id();
+			for (int search_matching_store_index = 0; search_matching_store_index < 10; search_matching_store_index++) {
+				if (store_list[search_matching_store_index]->store_id == store_id_in_cart) {
+					store_list[search_matching_store_index]->min_price = this->min_price;
+					this->total_price = store_list[search_matching_store_index]->tip;
+					break;
+				}
+			}
+		}
+		this->total_price += cart->total_price;
+
 		cart->show_cart();
-		this->total_price = cart->total_price;
 		cout << "총 주문 금액 : " << this->total_price << endl;
 
-		
+
 
 		int select_item = 0;
 		cout << "1. 더 고르기" << endl;
@@ -81,6 +82,7 @@ int Payment::payment(Cart* cart, Store* store_list[]) {
 			cin >> select_item;
 			cart->delete_select_menu(select_item);
 		}
+		else break;
 	}
 A:
 

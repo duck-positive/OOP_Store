@@ -82,7 +82,12 @@ int Payment::show_cart_before_payment(Cart* cart, Store* store_list[]) {
 			cart->show_cart();
 			cout << "삭제할 메뉴의 번호를 입력해주세요(취소 0) : ";
 			cin >> select_item;
-			cart->delete_select_menu(select_item);
+			if (select_item == 0) {
+				break;
+			}
+			else {
+				cart->delete_select_menu(select_item);
+			}
 		}
 		else break;
 	}

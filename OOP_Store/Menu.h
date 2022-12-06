@@ -24,7 +24,14 @@ public:
 	int get_menu_count();
 	string get_menu_name();
 	string get_menu_explanation();
-	void set_menu_count(int);
+	void set_menu_count(int menu_count);
+	/*void set_store_id(int store_id);
+	void set_menu_price(int menu_price);
+	
+	void set_menu_name(string menu_name);
+	void set_option_check(bool option_list[]);
+	void set_option_list(string option_list[]); 
+	void set_option_price(int option_price[]);*/
 
 	void add_cart(Cart*);
 	void init_option_info(std::string[], int[]);

@@ -45,15 +45,54 @@ string Menu::get_menu_explanation() {
 	return this->menu_explanation;
 }
 
+//void Menu::set_store_id(int store_id) {
+//	this->store_id = store_id;
+//}
+//
+//void Menu::set_menu_price(int menu_price) {
+//	this->menu_price = menu_price;
+//}
+
 void Menu::set_menu_count(int menu_count) {
 	this->menu_count = menu_count;
 }
+
+//void Menu::set_menu_name(string menu_name) {
+//	this->menu_name = menu_name;
+//}
+//
+//void Menu::set_option_check(bool option_check[]) {
+//	for (int option_list_index = 0; option_list_index < 5; option_list_index++) {
+//		this->option_check[option_list_index] = option_check[option_list_index];
+//	}
+//}
+//
+//void Menu::set_option_list(string option_list[]) {
+//	for (int option_list_index = 0; option_list_index < 5; option_list_index++) {
+//		this->option_list[option_list_index] = option_list[option_list_index];
+//	}
+//}
+//
+//void Menu::set_option_price(int option_price[]) {
+//	for (int option_list_index = 0; option_list_index < 5; option_list_index++) {
+//		this->option_price[option_list_index] = option_price[option_list_index];
+//	}
+//}
+//
+
 
 void Menu::add_cart(Cart* cart) {
 	int select_action = 0;
 	for (int menu_list_in_cart_index = 0; menu_list_in_cart_index < 10; menu_list_in_cart_index++) {
 		if (cart->cart_menu_list[menu_list_in_cart_index].store_id == 0) {
 			cart->cart_menu_list[menu_list_in_cart_index] = *this;
+			/*cart->cart_menu_list[menu_list_in_cart_index].set_menu_count(this->get_menu_count());
+			cart->cart_menu_list[menu_list_in_cart_index].set_store_id(this->get_store_id());
+			cart->cart_menu_list[menu_list_in_cart_index].set_menu_price(this->get_menu_price());
+			cart->cart_menu_list[menu_list_in_cart_index].set_menu_name(this->get_menu_name());
+			cart->cart_menu_list[menu_list_in_cart_index].set_option_check(this->option_check);
+			cart->cart_menu_list[menu_list_in_cart_index].set_option_list(this->option_list);
+			cart->cart_menu_list[menu_list_in_cart_index].set_option_price(this->option_price);*/
 			break;
 		}
 		else if (cart->cart_menu_list[menu_list_in_cart_index].store_id != this->store_id) {

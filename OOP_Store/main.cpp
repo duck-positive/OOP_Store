@@ -60,6 +60,7 @@ void print_store_list(Store* store_list[], int list_size, Cart* cart) {
 				else {//기타 입력 시 예외처리
 					store_list[input - 1]->menu_list[select - 1].set_menu_count(menu_count);
 					store_list[input - 1]->menu_list[select - 1].add_cart(cart);
+					store_list[input - 1]->menu_list[select - 1].option_check[option_select - 1] = false;
 					break;
 				}
 			}
@@ -124,9 +125,10 @@ int main() {
 	Store* store10 = new Store(9, "서울시", "교촌치킨10", "0100000", kyochon_menu_list, "서울시", 1000, 3000);
 
 	Store* store_list[10] = { kyochon_chicken, bhc_chicken, jaws_tteokbokki, sincham_tteokbokki, store5, store6, store7, store8, store9, store10};
+	int result = 0;
 	while (true) {
 		print_store_list(store_list, 10, cart);
-		int result = payment->show_cart_before_payment(cart, store_list);
+		result = payment->show_cart_before_payment(cart, store_list);
 		if (result == 0) break;
 	}
 

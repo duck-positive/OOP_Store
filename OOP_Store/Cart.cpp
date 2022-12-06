@@ -41,6 +41,7 @@ void Cart::delete_select_menu(int select_item_index) {
 	}
 	else {
 		this->cart_menu_list[select_item_index - 1].init_option_check();
+		
 		this->cart_menu_list[select_item_index - 1] = Menu();
 	}
 	this->sum_price();

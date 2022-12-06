@@ -5,7 +5,7 @@
 using namespace std;
 
 class Store {
-protected:
+private:
 	string store_address;
 	string store_phno;
 	string user_address;

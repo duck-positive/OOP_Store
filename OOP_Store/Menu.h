@@ -9,24 +9,28 @@ class Menu
 private:
 	int store_id;
 	int menu_count;
-	int option_count;
-	std::string menu_name;
-	std::string menu_explanation;
 	int menu_price;
+	int option_count;
+
+	string menu_name;
+	string menu_explanation;
+	
 public:
 	Menu();
-	Menu(int, std::string, std::string, int, int, std::string[], int[]);
+	Menu(int, string, string, int, int, string[], int[]);
+	
+	int get_store_id();
+	int get_menu_price();
+	int get_menu_count();
+	string get_menu_name();
+	string get_menu_explanation();
+	void set_menu_count(int);
+
 	void add_cart(Cart*);
 	void init_option_info(std::string[], int[]);
 	void init_option_check();
 	void print_menu();
 	void print_menu_option();
-	int get_store_id();
-	string get_menu_name();
-	string get_menu_explanation();
-	int get_menu_price();
-	int get_menu_count();
-	void set_menu_count(int);
 	
 	std::string option_list[5];
 	bool option_check[5];

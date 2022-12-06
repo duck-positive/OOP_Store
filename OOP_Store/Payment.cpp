@@ -27,12 +27,14 @@ Payment::Payment(User* user, int payment_num, int card_number, int card_password
 	this->pay_password = pay_password;
 }
 
-int Payment::payment(Cart* cart, Store* store_list[]) {
-	int input_card_number;
-	int input_card_password;
-	int input_pay_number;
-	int input_pay_password;
+int Payment::show_cart_before_payment(Cart* cart, Store* store_list[]) {
+	int input_card_number= 0;
+	int input_card_password = 0;
+	int input_pay_number = 0;
+	int input_pay_password = 0;
 	int select_action = 0;
+	int select_item = 0;
+
 	while (true) {
 		cart->sum_price();
 		int cart_total_price = cart->total_price;
@@ -42,11 +44,12 @@ int Payment::payment(Cart* cart, Store* store_list[]) {
 				system("cls");
 				cout << "장바구니가 비어있습니다" << endl;
 				cout << "1. 더 고르기" << endl;
+				cout << "선택할 행동의 번호를 입력해주세요 : ";
 				cin >> select_action;
 				if (select_action == 1) {
 					return 1;
 				}
-				else {// 예외처리 추가 필요
+				else {
 					cout << "입력이 잘못되었습니다." << endl;
 				}
 			}
@@ -65,13 +68,12 @@ int Payment::payment(Cart* cart, Store* store_list[]) {
 
 		cart->show_cart();
 		cout << "총 주문 금액 : " << this->total_price << endl;
-
-
-
-		int select_item = 0;
+		cout << "=================================" << endl;
 		cout << "1. 더 고르기" << endl;
 		cout << "2. 장바구니에 담은 메뉴 삭제" << endl;
 		cout << "3. 결제하기" << endl;
+		cout << "=================================" << endl;
+		cout << "선택할 행동의 번호를 입력해주세요 : ";
 		cin >> select_action;
 		if (select_action == 1) {
 			return 1;
@@ -164,5 +166,3 @@ A:
 
 
 }
-
-Payment::~Payment() {}

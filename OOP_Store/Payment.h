@@ -10,9 +10,7 @@ public:
 	Payment();
 	Payment(User* user, int payment_num, int card_number, int card_passwoed, int pay_number, int pay_password); 
 	
-	int payment(Cart* cart, Store* store_list[]);
-
-	~Payment();
+	int show_cart_before_payment(Cart* cart, Store* store_list[]);
 
 	User* user;
 	int payment_num;

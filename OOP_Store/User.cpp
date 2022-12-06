@@ -16,24 +16,25 @@ User::User(string user_id, string name, string password, string phone_number, st
 	this->address = address;
 }
 //setter///
-void User::setuser_id(string e) {
-	this->user_id = e;
+void User::set_user_id(string user_id) {
+	this->user_id = user_id;
 }
-void User::setname(string n) {
-	this->name = n;
-}
-
-void User::setpassword(string p) {
-	this->password = p;
+void User::set_name(string name) {
+	this->name = name;
 }
 
-void User::setphone_number(string ph) {
-	this->phone_number = ph;
+void User::set_password(string password) {
+	this->password = password;
 }
 
-void User::setaddress(string add) {
-	this->address = add;
+void User::set_phone_number(string phone_number) {
+	this->phone_number = phone_number;
 }
+
+void User::set_address(string address) {
+	this->address = address;
+}
+
 //void category_search(int store_id) {
 //	system("cls");
 //	cout << "\t\t\t\t------------------------------" << endl;
@@ -60,27 +61,25 @@ void User::setaddress(string add) {
 
 
 //Getter//
-string User::getuser_id()const {
+string User::get_user_id()const {
 	return this->user_id;
 }
 
-string User::getname()const {
+string User::get_name()const {
 	return this->name;
 }
 
-string User::getpassword()const {
+string User::get_password()const {
 	return this->password;
 }
 
-string User::getphone_number()const {
+string User::get_phone_number()const {
 	return this->phone_number;
 }
 
 
-string User::getaddress()const {
+string User::get_address()const {
 	return this->address;
 }
-User::~User() {
-	
-}
+
 

@@ -10,27 +10,29 @@ void print_store_list(Store* store_list[], int list_size, Cart* cart) {
 	while (true) {
 		system("cls");
 		cout << "가게 목록 출력" << endl;
-		for (int i = 0; i < list_size; i++) {
-			if (store_list[i]->store_name != "") {
-				cout << i + 1 << ". " << store_list[i]->store_name << endl;
+		for (int store_list_index = 0; store_list_index < list_size; store_list_index++) {
+			if (store_list[store_list_index]->store_name != "") {
+				cout << store_list_index + 1 << ". " << store_list[store_list_index]->store_name << endl;
 			}
 			else break;
 		}
 		int input = 0;
-		cout << "장바구니로 가기 : 0" << endl;
+		int select = 0;
+		int option_select = 0;
+		int menu_count = 0;
+		cout << "=================================" << endl;
+		cout << "0. 장바구니 보기" << endl;
 		cin >> input;
 		//장바구니로 가기
 		if (input == 0) {
 			system("cls");
 			break;
 		}
-		int select = 0;
-		int option_select = 0;
-		int menu_count = 0;
+		
 		//메뉴 계속 선택하기 선택 시 반복
 		while (true) {
 			store_list[input - 1]->print_store_info();
-			
+			cout << "선택할 행동의 번호를 입력해주세요 : ";
 			cin >> select;
 			//상점 목록으로 돌아가기
 			if (select == 0) {
@@ -48,11 +50,19 @@ void print_store_list(Store* store_list[], int list_size, Cart* cart) {
 			else {
 				store_list[input-1]->menu_list[select - 1].option_check[option_select - 1] = true;
 			}
-			cout << "메뉴 수량 선택" << endl;
-			cin >> menu_count;
-			store_list[input - 1]->menu_list[select - 1].set_menu_count(menu_count);
-			
-			store_list[input-1]->menu_list[select-1].add_cart(cart);
+			while (true) {
+				cout << "메뉴 수량 선택 : ";
+				cin >> menu_count;
+				cout << endl;
+				if (menu_count == 0) {
+					cout << "수량은 최소 1개 이상이어야 합니다" << endl;
+				}
+				else {//기타 입력 시 예외처리
+					store_list[input - 1]->menu_list[select - 1].set_menu_count(menu_count);
+					store_list[input - 1]->menu_list[select - 1].add_cart(cart);
+					break;
+				}
+			}
 
 			cout << "메뉴를 계속 선택하시겠습니까?(상점 선택 화면: 0, 메뉴 선택 화면: 1)" << endl;
 			cin >> select;
@@ -68,11 +78,11 @@ int main() {
 	
 	Cart* cart = new Cart(user->user_id);
 	std::string kyochon_option[5] = { "치즈볼 3개 추가", "떡볶이 추가", "샐러드 추가", "", "" };
-	int kyochon_option_price[5] = { 3500, 9000, 5500, 0, 0, 0, 0, 0, 0, 0 };
+	int kyochon_option_price[5] = { 3500, 9000, 5500, 0, 0 };
 	std::string bhc_option[5] = { "케이준 프라이", "뿌링 치즈볼", "뿌링소떡", "", ""  };
-	int bhc_option_price[5] = { 3500, 9000, 5500, 0, 0, 0, 0, 0, 0, 0 };
+	int bhc_option_price[5] = { 3500, 9000, 5500, 0, 0 };
 	std::string jaws_option[5] = { "케이준 프라이", "뿌링 치즈볼", "뿌링소떡", "", "" };
-	int jaws_option_price[5] = { 3500, 9000, 5500, 0, 0, 0, 0, 0, 0, 0 };
+	int jaws_option_price[5] = { 3500, 9000, 5500, 0, 0 };
 
 	
 	std::string option3[10] = { "치즈볼 3개 추가", "떡볶이 추가", "샐러드", "dd", "dd", "dd", "dd", "dd", "dd", "dd" };
@@ -116,7 +126,7 @@ int main() {
 	Store* store_list[10] = { kyochon_chicken, bhc_chicken, jaws_tteokbokki, sincham_tteokbokki, store5, store6, store7, store8, store9, store10};
 	while (true) {
 		print_store_list(store_list, 10, cart);
-		int result = payment->payment(cart, store_list);
+		int result = payment->show_cart_before_payment(cart, store_list);
 		if (result == 0) break;
 	}
 

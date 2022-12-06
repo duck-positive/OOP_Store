@@ -6,7 +6,6 @@ Store::Store() {
 	this-> store_address = "";
 	this-> store_name = "";
 	this-> store_phno = "";
-	
 	this-> user_address = "";
 	this-> min_price = 0;
 	this-> tip = 0;
@@ -26,25 +25,27 @@ Store::Store(int store_id, string store_address, string store_name, string store
 }
 
 void Store::initialize_menu_list(Menu menu_list[]) {
-	for (int i = 0; i < 5; i++) {
-		this->menu_list[i] = menu_list[i];
+	for (int menu_list_index = 0; menu_list_index < 5; menu_list_index++) {
+		this->menu_list[menu_list_index] = menu_list[menu_list_index];
 	}
 }
 
 void Store::print_store_info() {
 	system("cls");
-	cout << endl << "가게명 : " << this->store_name << endl << endl;
-	cout << "최소 주문 금액 : " << this->min_price << endl;
-	for (int i = 0; i < 5; i++) {
-		if (this->menu_list[i].get_menu_price() == 0) {
+	cout << endl << "가게명 : " << this->store_name << endl;
+	cout << "최소 주문 금액 : " << this->min_price << "원" << endl;
+	cout << "배달 팁 : " << this->tip << "원" << endl;
+	cout << "=================================" << endl;
+	cout << "0. 이전 화면으로 돌아가기" << endl;
+
+	for (int menu_list_index = 0; menu_list_index < 5; menu_list_index++) {
+		if (this->menu_list[menu_list_index].get_menu_price() == 0) {
 			break;
 		}
-		cout << i + 1 << ".";
-		this->menu_list[i].print_menu();
-		
+		cout << menu_list_index + 1 << ". ";
+		this->menu_list[menu_list_index].print_menu();
 	}
 
-	cout << "추가할 메뉴 번호를 선택해주세요(상점 선택 화면 0) : ";
 }
 
 bool Store::confirm_order(string store_address, string store_name, string store_phno, string user_address) {

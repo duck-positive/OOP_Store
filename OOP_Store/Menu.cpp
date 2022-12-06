@@ -13,7 +13,7 @@ Menu::Menu() {
 	this->menu_count = 0;
 }
 
-Menu::Menu(int store_id, std::string menu_name, std::string menu_explanation, int menu_price, int option_count, std::string option_list[], bool option_check[], int option_price[]){
+Menu::Menu(int store_id, std::string menu_name, std::string menu_explanation, int menu_price, int option_count, std::string option_list[], int option_price[]){
 	//menu initialization
 	this->store_id = store_id;
 	this->menu_name = menu_name;
@@ -34,7 +34,7 @@ void Menu::init_option_info(string option_list[], int option_price[]) {
 	}
 }
 void Menu::init_option_check() {
-	for (int option_list_index = 0; option_list_index < 10; option_list_index++) {
+	for (int option_list_index = 0; option_list_index < 5; option_list_index++) {
 		this->option_check[option_list_index] = false;
 	}
 }

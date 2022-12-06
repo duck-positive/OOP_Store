@@ -67,28 +67,45 @@ int main() {
 	Payment* payment = new Payment(user, 10, 1234, 2345, 12, 34);
 	
 	Cart* cart = new Cart(user->user_id);
-	std::string option[10] = { "치즈볼 3개 추가", "떡볶이 추가", "샐러드 추가", "", "" , "" , "" , "" , "" , "" };
-	std::string option2[10] = { "치즈볼 3개 추가", "떡볶이 추가", "샐러드", "dd", "dd", "dd", "dd", "dd", "dd", "dd" };
+	std::string kyochon_option[5] = { "치즈볼 3개 추가", "떡볶이 추가", "샐러드 추가", "", "" };
+	int kyochon_option_price[5] = { 3500, 9000, 5500, 0, 0, 0, 0, 0, 0, 0 };
+	std::string bhc_option[5] = { "케이준 프라이", "뿌링 치즈볼", "뿌링소떡", "", ""  };
+	int bhc_option_price[5] = { 3500, 9000, 5500, 0, 0, 0, 0, 0, 0, 0 };
+	std::string jaws_option[5] = { "케이준 프라이", "뿌링 치즈볼", "뿌링소떡", "", "" };
+	int jaws_option_price[5] = { 3500, 9000, 5500, 0, 0, 0, 0, 0, 0, 0 };
+
+	
 	std::string option3[10] = { "치즈볼 3개 추가", "떡볶이 추가", "샐러드", "dd", "dd", "dd", "dd", "dd", "dd", "dd" };
 	std::string option4[10] = { "치즈볼 3개 추가", "떡볶이 추가", "샐러드", "dd", "dd", "dd", "dd", "dd", "dd", "dd" };
-	bool option_cnt[10] = { false, };
-	int option_price[10] = { 3500, 9000, 5500, 0, 0, 0, 0, 0, 0, 0};
+	
 	Menu kyochon_menu_list[5] = {
-		Menu(1, "허니콤보", "light", 20000, 3, option, option_cnt, option_price), 
-		Menu(1, "레드콤보", "light", 20000, 3, option, option_cnt, option_price), 
-		Menu(1, "허니오리지날", "light", 16000, 3, option, option_cnt, option_price), 
-		Menu(1, "레드오리지날", "light", 17000, 3, option, option_cnt, option_price) };
-	Menu kyochon_menu_list2[5] = {
-		Menu(2, "허니콤보", "light", 20000, 3, option, option_cnt, option_price),
-		Menu(2, "레드콤보", "light", 20000, 3, option, option_cnt, option_price),
-		Menu(2, "허니오리지날", "light", 16000, 3, option, option_cnt, option_price),
-		Menu(2, "레드오리지날", "light", 17000, 3, option, option_cnt, option_price) };
+		Menu(1, "허니콤보", "light", 20000, 3, kyochon_option, kyochon_option_price), 
+		Menu(1, "레드콤보", "light", 20000, 3, kyochon_option, kyochon_option_price),
+		Menu(1, "허니오리지날", "light", 16000, 3, kyochon_option, kyochon_option_price),
+		Menu(1, "레드오리지날", "light", 17000, 3, kyochon_option, kyochon_option_price) };
 
-	Store* store = new Store(1, "서울시", "교촌치킨 상도터널점", "0100000", kyochon_menu_list, "user_address", 16000, 4000);
+	Menu bhc_menu_list[5] = {
+		Menu(2, "뿌링클", "light", 18000, 3, bhc_option, bhc_option_price),
+		Menu(2, "맛초킹", "light", 18000, 3, bhc_option, bhc_option_price),
+		Menu(2, "레드킹", "light", 19000, 3, bhc_option, bhc_option_price),
+		Menu(2, "커리퀸", "light", 18000, 3, bhc_option, bhc_option_price) };
 
-	Store* store2 = new Store(2, "서울시", "교촌치킨2", "0100000", kyochon_menu_list2, "서울시", 1000, 3000);
-	Store* store3 = new Store(2, "서울시", "교촌치킨3", "0100000", kyochon_menu_list, "서울시", 1000, 3000);
-	Store* store4 = new Store(3, "서울시", "교촌치킨4", "0100000", kyochon_menu_list, "서울시", 1000, 3000);
+	Menu jaws_menu_list[5] = {
+		Menu(3, "뿌링클", "light", 18000, 3, jaws_option, jaws_option_price),
+		Menu(3, "맛초킹", "light", 18000, 3, jaws_option, jaws_option_price),
+		Menu(3, "레드킹", "light", 19000, 3, jaws_option, jaws_option_price),
+		Menu(3, "커리퀸", "light", 18000, 3, jaws_option, jaws_option_price) };
+
+	Menu sincham_menu_list[5] = {
+		Menu(3, "뿌링클", "light", 18000, 3, jaws_option, jaws_option_price),
+		Menu(3, "맛초킹", "light", 18000, 3, jaws_option, jaws_option_price),
+		Menu(3, "레드킹", "light", 19000, 3, jaws_option, jaws_option_price),
+		Menu(3, "커리퀸", "light", 18000, 3, jaws_option, jaws_option_price) };
+
+	Store* kyochon_chicken = new Store(1, "서울시", "교촌치킨 상도터널점", "0100000", kyochon_menu_list, "user_address", 16000, 4000);
+	Store* bhc_chicken = new Store(2, "서울시", "BHC 상도점", "0100000", bhc_menu_list, "서울시", 16000, 3000);
+	Store* jaws_tteokbokki = new Store(3, "서울시", "죠스떡볶이 중앙대점", "0100000", jaws_menu_list, "서울시", 10000, 3000);
+	Store* sincham_tteokbokki = new Store(4, "서울시", "신참떡볶이 상도역점", "0100000", sincham_menu_list, "서울시", 13000, 2000);
 	Store* store5 = new Store(4, "서울시", "교촌치킨5", "0100000", kyochon_menu_list, "서울시", 1000, 3000);
 	Store* store6 = new Store(5, "서울시", "교촌치킨6", "0100000", kyochon_menu_list, "서울시", 1000, 3000);
 	Store* store7 = new Store(6, "서울시", "교촌치킨7", "0100000", kyochon_menu_list, "서울시", 1000, 3000);
@@ -96,7 +113,7 @@ int main() {
 	Store* store9 = new Store(8, "서울시", "교촌치킨9", "0100000", kyochon_menu_list, "서울시", 1000, 3000);
 	Store* store10 = new Store(9, "서울시", "교촌치킨10", "0100000", kyochon_menu_list, "서울시", 1000, 3000);
 
-	Store* store_list[10] = { store, store2, store3, store4, store5, store6, store7, store8, store9, store10};
+	Store* store_list[10] = { kyochon_chicken, bhc_chicken, jaws_tteokbokki, sincham_tteokbokki, store5, store6, store7, store8, store9, store10};
 	while (true) {
 		print_store_list(store_list, 10, cart);
 		int result = payment->payment(cart, store_list);

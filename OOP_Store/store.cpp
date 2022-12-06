@@ -20,7 +20,7 @@ Store::Store(int store_id, string store_address, string store_name, string store
 	this->store_name = store_name;
 	this->store_phno = store_phno;
 	initialize_menu_list(menu_list);
-	this->user_address = user_address;
+	this->user_address = "";
 	this->min_price = min_price;
 	this->tip = tip;
 }

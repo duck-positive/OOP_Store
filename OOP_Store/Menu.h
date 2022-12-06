@@ -15,7 +15,7 @@ private:
 	int menu_price;
 public:
 	Menu();
-	Menu(int, std::string, std::string, int, int, std::string[], bool[], int[]);
+	Menu(int, std::string, std::string, int, int, std::string[], int[]);
 	void add_cart(Cart*);
 	void init_option_info(std::string[], int[]);
 	void init_option_check();
@@ -28,9 +28,9 @@ public:
 	int get_menu_count();
 	void set_menu_count(int);
 	
-	std::string option_list[10];
-	bool option_check[10];
-	int option_price[10];
+	std::string option_list[5];
+	bool option_check[5];
+	int option_price[5];
 };
 
 

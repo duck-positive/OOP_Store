@@ -7,12 +7,11 @@ Cart::Cart() {
 	for (int cart_menu_index = 0; cart_menu_index < 10; cart_menu_index++) {
 		this->cart_menu_list[cart_menu_index] = Menu();
 	}
-	this->cart_user_id = "";
 	this->total_price = 0;
 }
 
-Cart::Cart(string user_id) : Cart() {
-	this->cart_user_id = user_id;
+Cart::Cart(User* user) : Cart() {
+	this->user_own_cart = user;
 }
 
 int Cart::get_menu_store_id() {

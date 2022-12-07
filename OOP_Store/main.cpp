@@ -77,9 +77,9 @@ void print_store_list(Store* store_list[], int list_size, Cart* cart) {
 
 int main() {
 	User* user = new User("user_id", "user_name", "1234", "01012345678", "¼­¿ï½Ã");
-	Payment* payment = new Payment(user, 10, 1234, 2345, 12, 34);
+	Payment* payment = new Payment(user, 10, 1234, 2345, 3456, 4567);
 	
-	Cart* cart = new Cart(user->user_id);
+	Cart* cart = new Cart(user);
 	std::string kyochon_option[5] = { "Ä¡Áîº¼ 3°³ Ãß°¡", "¶±ººÀÌ Ãß°¡", "»ø·¯µå Ãß°¡", "", "" };
 	int kyochon_option_price[5] = { 3500, 9000, 5500, 0, 0 };
 	std::string bhc_option[5] = { "ÄÉÀÌÁØ ÇÁ¶óÀÌ", "»Ñ¸µ Ä¡Áîº¼", "»Ñ¸µ¼Ò¶±", "", ""  };
@@ -106,10 +106,10 @@ int main() {
 		Menu(3, "ºÎ»ê ¾î¹¬", "¾î¹¬", 3500, 3, jaws_option, jaws_option_price) };
 
 	Menu sincham_menu_list[5] = {
-		Menu(3, "¶±ººÀÌ", "¶±ººÀÌ", 4000, 3, jaws_option, jaws_option_price),
-		Menu(3, "¶óººÀÌ", "¶óººÀÌ", 5500, 3, jaws_option, jaws_option_price),
-		Menu(3, "Âû¼ø´ë", "Âû¼ø´ë", 3500, 3, jaws_option, jaws_option_price),
-		Menu(3, "¸ðµë Æ¢±è", "¸ðµë Æ¢±è", 4000, 3, jaws_option, jaws_option_price) };
+		Menu(4, "¶±ººÀÌ", "¶±ººÀÌ", 4000, 3, jaws_option, jaws_option_price),
+		Menu(4, "¶óººÀÌ", "¶óººÀÌ", 5500, 3, jaws_option, jaws_option_price),
+		Menu(4, "Âû¼ø´ë", "Âû¼ø´ë", 3500, 3, jaws_option, jaws_option_price),
+		Menu(4, "¸ðµë Æ¢±è", "¸ðµë Æ¢±è", 4000, 3, jaws_option, jaws_option_price) };
 
 	Store* kyochon_chicken = new Store(1, "¼­¿ï½Ã", "±³ÃÌÄ¡Å² »óµµÅÍ³ÎÁ¡", "0100000", kyochon_menu_list, "user_address", 16000, 4000);
 	Store* bhc_chicken = new Store(2, "¼­¿ï½Ã", "BHC »óµµÁ¡", "0100000", bhc_menu_list, "¼­¿ï½Ã", 16000, 3000);

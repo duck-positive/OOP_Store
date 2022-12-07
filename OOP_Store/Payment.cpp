@@ -128,7 +128,7 @@ A:
 		std::cin >> input_card_password;
 		if (this->card_password != input_card_password)
 		{
-			std::cout << "번호가 일치하지 않습니다.";
+			std::cout << "번호가 일치하지 않습니다." << endl;;
 			goto B;
 		}
 
@@ -143,12 +143,12 @@ A:
 		std::cout << "\t\t\t\t*****************************************" << endl;
 		std::cout << "\t\t\t\t   On-Line Payment 결제를 선택하셨습니다. " << endl;
 		std::cout << "\t\t\t\t*****************************************" << endl;
-		std::cout << "\t\t\t\t Pay 회사를 선택해 주세요.:";
-		std::cout << "\t\t\t\t press 1 카카오 페이";
-		std::cout << "\t\t\t\t press 2 네이버 페이";
-		std::cout << "\t\t\t\t press 3 배민 페이";
+		std::cout << "\t\t\t\t Pay 회사를 선택해 주세요" << endl;;
+		std::cout << "\t\t\t\t press 1 카카오 페이" << endl;
+		std::cout << "\t\t\t\t press 2 네이버 페이" << endl;
+		std::cout << "\t\t\t\t press 3 배민 페이"<< endl;
 		std::cin >> input_pay_number;
-		if (this->pay_number != input_pay_number)
+		if (input_pay_number < 1 || input_pay_number > 3)
 		{
 			std::cout << "번호가 일치하지 않습니다.";
 			goto C;

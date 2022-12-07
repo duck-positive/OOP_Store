@@ -33,6 +33,7 @@ void Store::initialize_menu_list(Menu menu_list[]) {
 void Store::print_store_info() {
 	system("cls");
 	cout << endl << "가게명 : " << this->store_name << endl;
+	cout << "최소 배달 금액 : " << this->min_price << "원" << endl;
 	cout << "배달 팁 : " << this->tip << "원" << endl;
 	cout << "=================================" << endl;
 	cout << "0. 이전 화면으로 돌아가기" << endl;

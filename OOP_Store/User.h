@@ -6,7 +6,6 @@ using namespace std;
 class User
 {
 protected:
-	
 	string name;
 	string password;
 	string phone_number;

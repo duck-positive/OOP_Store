@@ -1,6 +1,7 @@
 #include "Payment.h"
 #include <iostream>
 #include <string>
+#include <Windows.h>
 
 using namespace std;
 
@@ -58,7 +59,7 @@ int Payment::show_cart_before_payment(Cart* cart, Store* store_list[]) {
 			int store_id_in_cart = cart->get_menu_store_id();
 			for (int search_matching_store_index = 0; search_matching_store_index < 10; search_matching_store_index++) {
 				if (store_list[search_matching_store_index]->store_id == store_id_in_cart) {
-					store_list[search_matching_store_index]->min_price = this->min_price;
+					this->min_price = store_list[search_matching_store_index]->min_price;
 					this->total_price = store_list[search_matching_store_index]->tip;
 					break;
 				}
@@ -88,6 +89,7 @@ int Payment::show_cart_before_payment(Cart* cart, Store* store_list[]) {
 			else {
 				cart->delete_select_menu(select_item);
 			}
+			system("cls");
 		}
 		else break;
 	}
@@ -95,9 +97,12 @@ A:
 
 	if (this->min_price > this->total_price)
 	{
-		std::cout << "주문 최소 금액을 넘지 못해 배달이 불가합니다." << endl;
+		cout << "주문 최소 금액을 넘지 못해 배달이 불가합니다." << endl;
+		cout << "상점 선택창으로 이동합니다." << endl;
+		Sleep(2000);
 		return 1;
 	}
+	system("cls");
 	std::cout << "\t\t\t\t ****************결제 방법을 선택해 주세요.****************" << endl;
 	std::cout << "\t\t\t\t 사회적 거리두기 강화를 위해 대면 결제는 제공되지 않습니다." << endl;
 	std::cout << "\t\t\t\t**********************************************************" << endl;
@@ -112,14 +117,14 @@ A:
 		std::cout << "\t\t\t\t*****************************************" << endl;
 		std::cout << "\t\t\t\t   Credit Cart 결제를 선택하셨습니다. " << endl;
 		std::cout << "\t\t\t\t*****************************************" << endl;
-		std::cout << "\t\t\t\t 카드 번호를 입력하세요:";
+		std::cout << "\t\t\t\t 카드 번호를 입력하세요 : ";
 		std::cin >> input_card_number;
 		if (this->card_number != input_card_number)
 		{
 			std::cout << "번호가 일치하지 않습니다.";
 			goto B;
 		}
-		std::cout << "\t\t\t\t 카드 비밀번호를 입력하세요 :";
+		std::cout << "\t\t\t\t 카드 비밀번호를 입력하세요 : ";
 		std::cin >> input_card_password;
 		if (this->card_password != input_card_password)
 		{
